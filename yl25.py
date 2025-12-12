@@ -29,3 +29,13 @@ print(len(dictionary))
 dictionary.update({"pikkus": 167})
 
 print(dictionary["pikkus"])
+
+##dictionary.pop("birthYear")
+
+del dictionary["birthYear"]
+
+print(dictionary)
+
+##del dictionary
+
+dictionary.clear()
