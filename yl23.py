@@ -1,8 +1,10 @@
 import random
-cards = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10]
+cards = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10] * 4
 
 def pullCard():
-    randomCard = random.choice(cards)
+    random.shuffle(cards)
+    randomCard = cards.pop()
+    ##randomCard = random.choice(cards)
     return randomCard
 
 def addUpCards(deck):
@@ -36,20 +38,25 @@ def startGame():
 
     def winCondition():
         if addUpCards(pcDeck) >= addUpCards(playerDeck) and addUpCards(pcDeck) <= 21:
-            print("Player", addUpCards(playerDeck), "Dealer", addUpCards(pcDeck), "Sa kaotasid")
+            print("Player:", addUpCards(playerDeck), "Dealer:", addUpCards(pcDeck))
+            print("Dealer võitis")
             restart()
         elif addUpCards(pcDeck) <= addUpCards(playerDeck) and addUpCards(playerDeck) <= 21:
          if addUpCards(pcDeck) <= 17:
             pcDeck.append(pullCard())
             winCondition()
          else:
-            print("Player", addUpCards(playerDeck), "Dealer", addUpCards(pcDeck), "Sa voitsid")
+            print("Player:", addUpCards(playerDeck), "Dealer:", addUpCards(pcDeck))
+            print("Sa võitsid")
             restart()
         elif addUpCards(playerDeck) >= 21:
             print(addUpCards(playerDeck))
             print("Sa läksid üle 21")
+            print("Dealer võitis")
             restart()
         elif addUpCards(pcDeck) >= 21:
+            print(addUpCards(pcDeck))
+            print("Dealer läks üle 21")
             print("Sa võitsid")
             restart()
 
@@ -60,7 +67,7 @@ def startGame():
             winCondition()
         else:
             print("Sinu deck:",playerDeck,addUpCards(playerDeck))
-            print("Arvuti deck:",pcDeck, addUpCards(pcDeck))
+            print("Arvuti deck: ""[""hidden,",pcDeck[0],"]", pcDeck[0])
             choice = input("hit, stand: ")
             if choice == "hit":
                 playerDeck.append(pullCard())
